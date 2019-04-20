@@ -4,6 +4,19 @@ add_action('wp_enqueue_scripts', 'style_theme');
 add_action('wp_footer', 'scripts_theme');
 add_action( 'wp_enqueue_scripts', 'my_scripts_method' );
 add_action('after_setup_theme', 'my_menu');
+add_action('widgets_init', 'register_my_widgets');
+
+function register_my_widgets () {
+	register_sidebar(array(
+		'name' => 'Left Sidebar',
+		'id' => 'left_sidebar',
+		'description' => 'descr',
+		'before_widget' => '<div class="widget %2$s">',
+		'after_widget' => "</div>\n",
+		'before_title' => '<h5 class="widget-title">',
+		'after_title' => "</h5>\n"
+	));
+}
 
 /*
  * register jQuery (with CDN)
